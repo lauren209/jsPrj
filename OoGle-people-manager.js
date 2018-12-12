@@ -26,25 +26,26 @@ if (!fs.existsSync('./programmers.json')) {
 // Build our routes
 
 app.get('/', (req, res) => {
-  res.send(res.json(programmers));
+  res.send(res.json(database));
 });
 
 app.get('/:id', (req, res) => {
   const id = req.params.id;
 
-  res.send(programmers[id]);
+  res.send(database[id]);
 });
 
 app.put('/:id', (req, res) => {
   const id = req.params.id;
-
-  res.send(programmers[id]);
+  res.send(database[id]);
+ // res.send(`Fill me in to update values with ID: ${id}`);
 });
 
 app.post('/', (req, res) => {
   const body = req.body; // Hold your JSON in here!
-  programmers[req.body.id] = req.body;
-  res.send(programmers[id]);
+  database[body.name] = req.body
+  res.send(`You sent: ${body}`);
+  res.sendStatus(200)
 });
 
 // IMPLEMENT A ROUTE TO HANDLE ALL OTHER ROUTES AND RETURN AN ERROR MESSAGE
